@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: DST_DB_RELATIONELLE
+  - name: dst_db_source
     description: 'Table relationelle'
     database: DST_DB
     schema: PUBLIC
@@ -22,7 +22,7 @@ sources:
         description: 'listes des musique'
       
       - name: PLAYLISTTRACK
-        description: 'Les titres de musique'
+        description: 'track et playslist'
       
       - name: TRACK
         description: 'Les titres de musique'
@@ -41,16 +41,16 @@ models:
       - name: name
         description: "nom du chanteur"
       
-      - name: birdthyear
+      - name: birthyear
         description: "date de naissance"
       
       - name: country
-        description: "ville"
+        description: "pays"
 
   - name: dim_album_v1
     description: "model de l'albums"
     columns:
-      - name: albums_id
+      - name: album_id
         description: "clé primaire"
         tests:
           - unique
@@ -59,7 +59,7 @@ models:
       - name: title
         description: "titre de l'album"
       
-      - name: artists_id
+      - name: artist_id
         description: "id de l'artist"
       
       - name: prod_year
@@ -108,16 +108,16 @@ models:
         description: "nom du compositeur"
 
   
-  - name: dim_fact_track_cd_v1
+  - name: fact_track_cd_v1
     description: "model principal"
     columns:
       - name: track_id
         description: "clé primaire"
         tests:
-          - unique
           - not_null
+          - unique
 
-      - name: albums_id
+      - name: album_id
         description: "id de l'album"
       
       - name: artist_id
